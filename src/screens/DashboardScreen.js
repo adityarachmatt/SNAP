@@ -1,5 +1,12 @@
 import React, { useMemo, useState } from "react";
-import { View, Text, StyleSheet, SafeAreaView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  SafeAreaView,
+  Image,
+} from "react-native";
 import { BlurView } from "expo-blur";
 import { colors, typography } from "../shared_styles";
 import NavigationBar from "../components/NavigationBar";
@@ -15,16 +22,35 @@ import BottomSheet, {
   BottomSheetFlatList,
 } from "@gorhom/bottom-sheet";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import CircularProgress from "react-native-circular-progress-indicator";
 
 const DATA = [
   {
-    name: "First Item",
+    name: "Joanna Park",
+    indices: {
+      burnout: 10,
+      isolation: 10,
+      overload: 10,
+      composite: 10,
+    },
   },
   {
-    name: "Second Item",
+    name: "George Lee",
+    indices: {
+      burnout: 10,
+      isolation: 10,
+      overload: 10,
+      composite: 10,
+    },
   },
   {
-    name: "Third Item",
+    name: "Albert Smith",
+    indices: {
+      burnout: 10,
+      isolation: 10,
+      overload: 10,
+      composite: 10,
+    },
   },
 ];
 
@@ -48,7 +74,9 @@ const DashboardScreen = ({ navigation, route }) => {
           <BottomSheetFlatList
             data={DATA}
             keyExtractor={(i) => i}
-            renderItem={({ item }) => <ListItem name={item.name} />}
+            renderItem={({ item }) => (
+              <TeamMember name={item.name} indices={item.indices} />
+            )}
             contentContainerStyle={styles.bottomSheetContainer}
           />
         </BottomSheet>
@@ -57,10 +85,34 @@ const DashboardScreen = ({ navigation, route }) => {
   );
 };
 
-const ListItem = ({ name }) => {
+const TeamMember = ({ name, indices }) => {
+  const { burnout, isolation, overload, composite } = indices;
   return (
-    <View style={styles.listItem}>
-      <Text>{name}</Text>
+    <View style={{ padding: 20 }}>
+      <View
+        style={{
+          flexDirection: "row",
+          width: "100%",
+          justifyContent: "space-between",
+          marginBottom: 10,
+          alignItems: "center",
+        }}
+      >
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <Image
+            style={{ height: 60, width: 60, marginRight: 15 }}
+            source={require("../../assets/female-profile.png")}
+          />
+          <Text style={typography.h3}>{name}</Text>
+        </View>
+        <CircularProgress value={composite} radius={30} />
+      </View>
+      <Text style={[typography.content_bold, { marginBottom: 10 }]}>
+        Indices
+      </Text>
+      <Text style={typography.content_default}>
+        BURNOUT {burnout} • ISOLATION {isolation} • OVERLOAD {overload}
+      </Text>
     </View>
   );
 };
@@ -74,9 +126,6 @@ const styles = StyleSheet.create({
   bottomSheetContainer: {
     flex: 1,
     backgroundColor: colors.secondary,
-  },
-  listItem: {
-    height: 200,
   },
 });
 
