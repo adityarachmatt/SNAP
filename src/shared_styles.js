@@ -94,3 +94,7 @@ export const typography2 = StyleSheet.create({
     fontSize: 12,
   },
 });
+
+export const constants = {
+  MARGIN: 20,
+};
