@@ -245,6 +245,20 @@ const DashboardModule = ({ navigation, route }) => {
       >
         {routeName}
       </Text>
+      <View style={{ width: "100%", alignItems: "center" }}>
+        {routeName === "Team" && (
+          <Image
+            source={require("../../assets/team-chart.png")}
+            style={{ height: 300, width: 300 }}
+          />
+        )}
+        {routeName === "Logs" && (
+          <Image
+            source={require("../../assets/logs-chart.png")}
+            style={{ height: 300, width: 300 }}
+          />
+        )}
+      </View>
       <BottomSheetModalProvider>
         <BottomSheet
           snapPoints={snapPoints}
