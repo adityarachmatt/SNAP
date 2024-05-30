@@ -25,138 +25,66 @@ import CircularProgress from "react-native-circular-progress-indicator";
 
 const DATA = [
   {
-    name: "Joanna Park",
+    name: "Wei",
+    image: "wei",
     indices: {
-      burnout: 10,
-      isolation: 10,
-      overload: 10,
-      composite: 10,
+      reciprocity: 71,
+      isolation: 52,
+      composite: 65,
     },
   },
   {
-    name: "George Lee",
+    name: "Anil",
+    image: "anil",
     indices: {
-      burnout: 10,
-      isolation: 10,
-      overload: 10,
-      composite: 10,
+      reciprocity: 59,
+      isolation: 68,
+      composite: 62,
     },
   },
   {
-    name: "Albert Smith",
+    name: "Carlos",
+    image: "carlos",
     indices: {
-      burnout: 10,
-      isolation: 10,
-      overload: 10,
-      composite: 10,
+      reciprocity: 70,
+      isolation: 52,
+      composite: 60,
     },
   },
   {
-    name: "Joanna Park",
+    name: "Ana",
+    image: "ana",
     indices: {
-      burnout: 10,
-      isolation: 10,
-      overload: 10,
-      composite: 10,
+      reciprocity: 45,
+      isolation: 72,
+      composite: 55,
     },
   },
   {
-    name: "George Lee",
+    name: "Shanice",
+    image: "shanice",
     indices: {
-      burnout: 10,
-      isolation: 10,
-      overload: 10,
-      composite: 10,
+      reciprocity: 72,
+      isolation: 40,
+      composite: 50,
     },
   },
   {
-    name: "Albert Smith",
+    name: "Jessica",
+    image: "jessica",
     indices: {
-      burnout: 10,
-      isolation: 10,
-      overload: 10,
-      composite: 10,
+      reciprocity: 50,
+      isolation: 42,
+      composite: 47,
     },
   },
   {
-    name: "Joanna Park",
+    name: "John",
+    image: "john",
     indices: {
-      burnout: 10,
-      isolation: 10,
-      overload: 10,
-      composite: 10,
-    },
-  },
-  {
-    name: "George Lee",
-    indices: {
-      burnout: 10,
-      isolation: 10,
-      overload: 10,
-      composite: 10,
-    },
-  },
-  {
-    name: "Albert Smith",
-    indices: {
-      burnout: 10,
-      isolation: 10,
-      overload: 10,
-      composite: 10,
-    },
-  },
-  {
-    name: "Joanna Park",
-    indices: {
-      burnout: 10,
-      isolation: 10,
-      overload: 10,
-      composite: 10,
-    },
-  },
-  {
-    name: "George Lee",
-    indices: {
-      burnout: 10,
-      isolation: 10,
-      overload: 10,
-      composite: 10,
-    },
-  },
-  {
-    name: "Albert Smith",
-    indices: {
-      burnout: 10,
-      isolation: 10,
-      overload: 10,
-      composite: 10,
-    },
-  },
-  {
-    name: "Joanna Park",
-    indices: {
-      burnout: 10,
-      isolation: 10,
-      overload: 10,
-      composite: 10,
-    },
-  },
-  {
-    name: "George Lee",
-    indices: {
-      burnout: 10,
-      isolation: 10,
-      overload: 10,
-      composite: 10,
-    },
-  },
-  {
-    name: "Albert Smith",
-    indices: {
-      burnout: 10,
-      isolation: 10,
-      overload: 10,
-      composite: 10,
+      reciprocity: 33,
+      isolation: 30,
+      composite: 42,
     },
   },
 ];
@@ -164,66 +92,66 @@ const DATA = [
 const LOG_DATA = [
   {
     medium: "Slack",
-    sender: "Albert",
+    sender: "Wei",
     recipient: "#general",
     type: "Broadcast Message",
     time: "10:30am",
   },
   {
     medium: "Slack",
-    sender: "Albert",
-    recipient: "George",
+    sender: "Wei",
+    recipient: "Anil",
     type: "Direct Message",
     time: "10:22am",
   },
   {
     medium: "Slack",
-    sender: "George",
+    sender: "Anil",
     recipient: "#general",
     type: "Broadcast Message",
     time: "10:21am",
   },
   {
     medium: "Slack",
-    sender: "Albert",
+    sender: "Wei",
     recipient: "#general",
     type: "Broadcast Message",
     time: "10:20am",
   },
   {
     medium: "Slack",
-    sender: "Albert",
-    recipient: "George",
+    sender: "Carlos",
+    recipient: "John",
     type: "Direct Message",
     time: "10:15am",
   },
   {
     medium: "Slack",
-    sender: "George",
+    sender: "Carlos",
     recipient: "#general",
     type: "Broadcast Message",
-    time: "10:30am",
+    time: "10:10am",
   },
   {
     medium: "Slack",
-    sender: "Albert",
+    sender: "Shanice",
     recipient: "#general",
     type: "Broadcast Message",
-    time: "10:30am",
+    time: "10:07am",
   },
   {
     medium: "Slack",
-    sender: "Albert",
-    recipient: "George",
+    sender: "Shanice",
+    recipient: "John",
     type: "Direct Message",
-    time: "10:22am",
+    time: "10:04am",
   },
   {
     medium: "Slack",
-    sender: "George",
+    sender: "John",
     recipient: "#general",
     type: "Broadcast Message",
-    time: "10:30am",
+    time: "10:02am",
   },
 ];
 
@@ -271,7 +199,11 @@ const DashboardModule = ({ navigation, route }) => {
               data={DATA}
               keyExtractor={(i) => i}
               renderItem={({ item }) => (
-                <TeamMember name={item.name} indices={item.indices} />
+                <TeamMember
+                  name={item.name}
+                  image={item.image}
+                  indices={item.indices}
+                />
               )}
               contentContainerStyle={styles.bottomSheetContainer}
             />
@@ -321,8 +253,8 @@ const Log = ({ medium, sender, recipient, type, time }) => {
   );
 };
 
-const TeamMember = ({ name, indices }) => {
-  const { burnout, isolation, overload, composite } = indices;
+const TeamMember = ({ name, image, indices }) => {
+  const { reciprocity, isolation, overload, composite } = indices;
   return (
     <View style={{ padding: 20 }}>
       <View
@@ -335,10 +267,48 @@ const TeamMember = ({ name, indices }) => {
         }}
       >
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Image
-            style={{ height: 60, width: 60, marginRight: 15 }}
-            source={require("../../assets/female-profile.png")}
-          />
+          {image === "ana" && (
+            <Image
+              style={{ height: 60, width: 60, marginRight: 15 }}
+              source={require("../../assets/ana.png")}
+            />
+          )}
+          {image === "anil" && (
+            <Image
+              style={{ height: 60, width: 60, marginRight: 15 }}
+              source={require("../../assets/anil.png")}
+            />
+          )}
+          {image === "carlos" && (
+            <Image
+              style={{ height: 60, width: 60, marginRight: 15 }}
+              source={require("../../assets/carlos.png")}
+            />
+          )}
+          {image === "jessica" && (
+            <Image
+              style={{ height: 60, width: 60, marginRight: 15 }}
+              source={require("../../assets/jessica.png")}
+            />
+          )}
+          {image === "john" && (
+            <Image
+              style={{ height: 60, width: 60, marginRight: 15 }}
+              source={require("../../assets/john.png")}
+            />
+          )}
+          {image === "shanice" && (
+            <Image
+              style={{ height: 60, width: 60, marginRight: 15 }}
+              source={require("../../assets/shanice.png")}
+            />
+          )}
+          {image === "wei" && (
+            <Image
+              style={{ height: 60, width: 60, marginRight: 15 }}
+              source={require("../../assets/wei.png")}
+            />
+          )}
           <Text style={typography.h3}>{name}</Text>
         </View>
         <CircularProgress value={composite} radius={30} />
@@ -347,7 +317,7 @@ const TeamMember = ({ name, indices }) => {
         Indices
       </Text>
       <Text style={typography.content_default}>
-        BURNOUT {burnout} • ISOLATION {isolation} • OVERLOAD {overload}
+        RECIPROCITY {reciprocity} • ISOLATION {isolation}
       </Text>
     </View>
   );
